@@ -7,11 +7,12 @@ import cors from 'cors';
 import debug from 'debug';
 import {RouteBase} from "../routes/RouteBase";
 import {UsersRoute} from "../routes/UsersRoute";
+import dotenv from "dotenv";
 
-
+dotenv.config();
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
-const port: number = 8080;
+const port: number = process.env.SERVER_PORT ? parseInt(process.env.SERVER_PORT, 10) : 3001;
 const routes: RouteBase[] = [];
 const debugLog: debug.IDebugger = debug('app');
 

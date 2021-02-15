@@ -7,17 +7,18 @@
   "license": "MIT",
   "scripts": {
     "start": "export DEBUG=* && nodemon --watch src src/server/index.ts",
-    "prebuild": "yarn lint",
+    "prebuild": "npm run lint",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc --project ./",
-    "prod": "yarn build && node ./dist/server/index.js",
+    "prod": "npm run build && node ./dist/server/index.js",
     "composer:start": "docker-compose -f docker-compose.yml up",
-    "composer:init": "yarn install && yarn start",
+    "composer:init": "npm run install && npm run start",
     "composer:ssh": "docker exec -it xuser-api-node ash"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "debug": "^4.3.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-winston": "^4.0.5",
     "winston": "^3.3.3"
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.10",
     "@types/debug": "^4.1.5",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.11",
     "@types/node": "^14.14.28",
     "nodemon": "^2.0.7",
