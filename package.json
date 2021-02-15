@@ -6,8 +6,9 @@
   "author": "Angel S. Moreno <angelxmoreno@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "export DEBUG=* && nodemon src/server/index.ts",
+    "start": "export DEBUG=* && nodemon --watch src src/server/index.ts",
     "build": "tsc --project ./",
+    "prod": "yarn build && node ./dist/server/index.js",
     "composer:start": "docker-compose -f docker-compose.yml up",
     "composer:init": "yarn install && yarn start",
     "composer:ssh": "docker exec -it xuser-api-node ash"
