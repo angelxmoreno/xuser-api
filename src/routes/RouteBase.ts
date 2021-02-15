@@ -1,18 +1,23 @@
-import {Application} from 'express';
+import {Router} from 'express';
 
 export abstract class RouteBase {
     protected name: string;
-    protected app: Application;
+    protected router: Router;
 
-    protected constructor(app: Application, name: string) {
+    protected constructor(name: string) {
         this.name = name;
-        this.app = app;
+        this.router = Router();
         this.configureRoutes();
     }
 
-    getName() {
+    getName(): string {
         return this.name;
     }
-    abstract configureRoutes(): Application;
+
+    getRoutes(): Router {
+        return this.router;
+    }
+
+    abstract configureRoutes(): void;
 
 }

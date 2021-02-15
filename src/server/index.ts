@@ -28,7 +28,7 @@ app.use(expressWinston.logger({
     )
 }));
 
-routes.push(new UsersRoute(app));
+routes.push(new UsersRoute());
 
 app.use(expressWinston.errorLogger({
     transports: [
@@ -40,13 +40,14 @@ app.use(expressWinston.errorLogger({
     )
 }));
 
-app.get('/', (req: express.Request, res: express.Response) => {
+app.get('/api', (req: express.Request, res: express.Response) => {
     res.status(200).send(`Server running at http://localhost:${port}`)
 });
 
 server.listen(port, () => {
     debugLog(`Server running at http://localhost:${port}`);
-    routes.forEach((route: RouteBase) => {
-        debugLog(`Routes configured for ${route.getName()}`);
+    routes.forEach((router: RouteBase) => {
+        app.use('/api', router.getRoutes());
+        debugLog(`Routes configured for ${router.getName()}`);
     });
 });
