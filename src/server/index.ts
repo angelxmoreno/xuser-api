@@ -11,8 +11,8 @@ import {UsersRoute} from "../routes/UsersRoute";
 
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
-const port: Number = 8080;
-const routes: Array<RouteBase> = [];
+const port: number = 8080;
+const routes: RouteBase[] = [];
 const debugLog: debug.IDebugger = debug('app');
 
 app.use(bodyparser.json());

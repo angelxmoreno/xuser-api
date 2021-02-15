@@ -7,6 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "export DEBUG=* && nodemon --watch src src/server/index.ts",
+    "prebuild": "yarn lint",
+    "lint": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc --project ./",
     "prod": "yarn build && node ./dist/server/index.js",
     "composer:start": "docker-compose -f docker-compose.yml up",
