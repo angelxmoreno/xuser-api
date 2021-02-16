@@ -12,6 +12,8 @@ import dotenv from "dotenv";
 dotenv.config();
 const app: express.Application = express();
 const server: http.Server = http.createServer(app);
+const baseHost: string = process.env.BASE_HOST ?? 'http://localhost';
+const rootPath: string = process.env.ROOT_PATH ?? '';
 const port: number = process.env.SERVER_PORT ? parseInt(process.env.SERVER_PORT, 10) : 3001;
 const routes: RouteBase[] = [];
 const debugLog: debug.IDebugger = debug('app');
@@ -40,14 +42,14 @@ app.use(expressWinston.errorLogger({
     )
 }));
 
-app.get('/api', (req: express.Request, res: express.Response) => {
-    res.status(200).send(`Server running at http://localhost:${port}`)
+app.get(rootPath, (req: express.Request, res: express.Response) => {
+    res.status(200).send(`Server running at ${baseHost}${rootPath}:${port}`)
 });
 
 server.listen(port, () => {
-    debugLog(`Server running at http://localhost:${port}`);
+    debugLog(`Server running at ${baseHost}${rootPath}:${port}`);
     routes.forEach((router: RouteBase) => {
-        app.use('/api', router.getRoutes());
+        app.use(rootPath, router.getRoutes());
         debugLog(`Routes configured for ${router.getName()}`);
     });
 });
