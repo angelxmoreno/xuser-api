@@ -6,11 +6,11 @@
   "author": "Angel S. Moreno <angelxmoreno@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "export DEBUG=* && nodemon --watch src src/server/index.ts",
+    "start:dev": "export DEBUG=* && nodemon --watch src src/server/index.ts",
     "prebuild": "npm run lint",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc --project ./",
-    "prod": "npm run build && node ./dist/server/index.js",
+    "start": "node ./dist/server/index.js",
     "composer:start": "docker-compose -f docker-compose.yml up",
     "composer:init": "npm run install && npm run start",
     "composer:ssh": "docker exec -it xuser-api-node ash"

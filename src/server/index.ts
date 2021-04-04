@@ -14,7 +14,7 @@ const app: express.Application = express();
 const server: http.Server = http.createServer(app);
 const baseHost: string = process.env.BASE_HOST ?? 'http://localhost';
 const rootPath: string = process.env.ROOT_PATH ?? '';
-const port: number = process.env.SERVER_PORT ? parseInt(process.env.SERVER_PORT, 10) : 3001;
+const port: number = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
 const routes: RouteBase[] = [];
 const debugLog: debug.IDebugger = debug('app');
 
