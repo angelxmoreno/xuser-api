@@ -18,6 +18,6 @@ export class UsersRoute extends RouteBase {
     }
 
     create(req: Request, res: Response) {
-        res.status(200).send(`Post to users`);
+        res.status(200).send(`Create to users`);
     }
 }
