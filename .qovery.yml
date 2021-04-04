@@ -1,0 +1,23 @@
+---
+application:
+  name: "xuser-api"
+  project: "xuser-api"
+  organization: "QoveryCommunity"
+  storage:
+  - name: "xuser-api-volume"
+    size: "10"
+    type: "fast_ssd"
+    mount_point: "/mnt/xuser-api-volume"
+databases:
+- type: "MYSQL"
+  name: "xuser-api-db"
+  version: "8.0"
+- type: "REDIS"
+  name: "xuser-api-redis"
+  version: "5"
+routers:
+- name: "main-xuser-api"
+  routes:
+  - application_name: "xuser-api"
+    paths:
+    - "/*"
